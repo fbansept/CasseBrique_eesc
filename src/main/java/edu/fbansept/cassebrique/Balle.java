@@ -16,6 +16,8 @@ public class Balle {
 
     protected ArrayList<Balle> listePoints = new ArrayList<>();
 
+    protected long indexFrame = 0;
+
     public Balle(int x, int y, int vitesseHorizontal, int vitesseVertical, int diametre, Color couleur) {
         this.x = x;
         this.y = y;
@@ -31,13 +33,19 @@ public class Balle {
     }
 
     public void dessiner(Graphics2D dessin) {
+
+        indexFrame ++;
+
+        if(indexFrame % 10 == 0){
+            //TODO ajout nouveau point (dans listePoints)
+        }
+
         dessin.setColor(couleur);
         dessin.fillOval(x, y,diametre,diametre);
         dessin.setColor(Color.WHITE);
-        dessin.fillOval(x + decalageReflet,
-                y + decalageReflet,
-                diametreReflet,
-                diametreReflet);
+        dessin.fillOval(x + decalageReflet, y + decalageReflet,  diametreReflet, diametreReflet);
+
+        //TODO dessiner tous les points de cette balle
     }
 
     public void inverseVitesseVertical() {
@@ -119,6 +127,5 @@ public class Balle {
     public void setCouleur(Color couleur) {
         this.couleur = couleur;
     }
-
 
 }
