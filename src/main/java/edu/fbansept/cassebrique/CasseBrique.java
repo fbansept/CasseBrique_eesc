@@ -33,14 +33,13 @@ public class CasseBrique extends Canvas {
     public void demarrer() throws InterruptedException {
 
         long indexFrame = 0;
-        int xBalle = 250;
-        int yBalle = 250;
-        int vitesseHorizontalBalle = -4;
-        int vitesseVerticalBalle = 6;
-        int diametreBalle = 50;
-        int diametreRefletBalle = diametreBalle * 30 / 100;
-        //ou alors : int diametreRefletBalle = diametreBalle * O.3f;
-        int decalageReflet = diametreBalle * 20 / 100;
+        Balle balle = new Balle(
+                250,
+                250,
+                4,
+                -6,
+                30,
+                Color.GREEN);
 
         while(true) {
             indexFrame ++;
@@ -52,25 +51,29 @@ public class CasseBrique extends Canvas {
             dessin.fillRect(0,0,500,500);
 
             //dessin balle
-            xBalle += vitesseHorizontalBalle;
-            yBalle += vitesseVerticalBalle;
-            dessin.setColor(Color.RED);
-            dessin.fillOval(xBalle,yBalle, diametreBalle,diametreBalle);
+            balle.setX(balle.getX() + balle.getVitesseHorizontal());
+            balle.setY(balle.getY() + balle.getVitesseVertical());
+            dessin.setColor(balle.getCouleur());
+            dessin.fillOval(
+                    balle.getX(),
+                    balle.getY(),
+                    balle.getDiametre(),
+                    balle.getDiametre());
+
             dessin.setColor(Color.WHITE);
             dessin.fillOval(
-                    xBalle + decalageReflet,
-                    yBalle + decalageReflet,
-                    diametreRefletBalle,
-                    diametreRefletBalle);
+                    balle.getX() + balle.getDecalageReflet(),
+                    balle.getY() + balle.getDecalageReflet(),
+                    balle.getDiametreReflet(),
+                    balle.getDiametreReflet());
 
             //mouvement balle
-            if(xBalle < 0 || xBalle > 500 - diametreBalle) {
-                vitesseHorizontalBalle *= -1;
-                //vitesseHorizontalBalle = vitesseHorizontalBalle * -1
+            if(balle.getX() < 0 || balle.getX() > 500 - balle.getDiametre()) {
+                balle.setVitesseHorizontal(balle.getVitesseHorizontal() * -1);
             }
 
-            if(yBalle < 0 || yBalle > 500 - diametreBalle) {
-                vitesseVerticalBalle *= -1;
+            if(balle.getY() < 0 || balle.getY() > 500 - balle.getDiametre()) {
+                balle.setVitesseVertical(balle.getVitesseVertical() * -1);
             }
 
             //-----------------------------
