@@ -2,6 +2,7 @@ package edu.fbansept.cassebrique;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class CasseBrique extends Canvas {
 
@@ -36,13 +37,21 @@ public class CasseBrique extends Canvas {
     public void demarrer() throws InterruptedException {
 
         long indexFrame = 0;
-        Balle balle = new Balle(
-                250,
-                250,
-                4,
-                -6,
-                30,
-                Color.GREEN);
+        ArrayList<Balle> listeBalles = new ArrayList<>();
+
+        for(int i = 0; i < 100; i ++) {
+            listeBalles.add(new Balle(
+                    (int)(Math.random() * largeurEcran),
+                    (int)(Math.random() * largeurEcran),
+                    (int)(Math.random() * 10) - 5,
+                    (int)(Math.random() * 10) - 5,
+                    (int)(Math.random() * 25) + 5,
+                    new Color(
+                            (float)Math.random(),
+                            (float)Math.random(),
+                            (float)Math.random()
+                    )));
+        }
 
         while(true) {
             indexFrame ++;
@@ -54,16 +63,10 @@ public class CasseBrique extends Canvas {
             dessin.fillRect(0,0,500,500);
 
             //dessin balle
-            balle.deplacer();
-            balle.dessiner(dessin);
-
-            //mouvement balle
-            if(balle.getX() < 0 || balle.getX() > 500 - balle.getDiametre()) {
-                balle.inverseVitesseHorizontal();
-            }
-
-            if(balle.getY() < 0 || balle.getY() > 500 - balle.getDiametre()) {
-                balle.inverseVitesseVertical();
+            for(Balle balle : listeBalles) {
+                balle.deplacer();
+                balle.dessiner(dessin);
+                balle.testCollision(largeurEcran, hauteurEcran);
             }
 
             //-----------------------------

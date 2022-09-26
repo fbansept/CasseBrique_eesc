@@ -1,6 +1,7 @@
 package edu.fbansept.cassebrique;
 
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Balle {
 
@@ -13,11 +14,13 @@ public class Balle {
     protected int decalageReflet;
     protected Color couleur;
 
+    protected ArrayList<Balle> listePoints = new ArrayList<>();
+
     public Balle(int x, int y, int vitesseHorizontal, int vitesseVertical, int diametre, Color couleur) {
         this.x = x;
         this.y = y;
-        this.vitesseHorizontal = vitesseHorizontal;
-        this.vitesseVertical = vitesseVertical;
+        this.vitesseHorizontal = vitesseHorizontal == 0 ? 1 : vitesseHorizontal;
+        this.vitesseVertical = vitesseVertical == 0 ? 1 : vitesseVertical;
         this.couleur = couleur;
         this.setDiametre(diametre);
     }
@@ -44,6 +47,20 @@ public class Balle {
     public void inverseVitesseHorizontal() {
         vitesseHorizontal *= -1;
     }
+
+    public void testCollision(int largeurEcran, int hauteurEcran) {
+
+        //mouvement balle
+        if(x < 0 || x > largeurEcran - diametre) {
+            inverseVitesseHorizontal();
+        }
+
+        if(y < 0 || y > hauteurEcran - diametre) {
+            inverseVitesseVertical();
+        }
+    }
+
+
 
     public int getX() {
         return x;
