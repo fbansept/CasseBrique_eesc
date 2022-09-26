@@ -51,8 +51,8 @@ public class CasseBrique extends Canvas {
             dessin.fillRect(0,0,500,500);
 
             //dessin balle
-            balle.setX(balle.getX() + balle.getVitesseHorizontal());
-            balle.setY(balle.getY() + balle.getVitesseVertical());
+            balle.deplacer();
+
             dessin.setColor(balle.getCouleur());
             dessin.fillOval(
                     balle.getX(),
@@ -69,11 +69,11 @@ public class CasseBrique extends Canvas {
 
             //mouvement balle
             if(balle.getX() < 0 || balle.getX() > 500 - balle.getDiametre()) {
-                balle.setVitesseHorizontal(balle.getVitesseHorizontal() * -1);
+                balle.inverseVitesseHorizontal();
             }
 
             if(balle.getY() < 0 || balle.getY() > 500 - balle.getDiametre()) {
-                balle.setVitesseVertical(balle.getVitesseVertical() * -1);
+                balle.inverseVitesseVertical();
             }
 
             //-----------------------------

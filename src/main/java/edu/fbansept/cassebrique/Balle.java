@@ -22,6 +22,19 @@ public class Balle {
         this.setDiametre(diametre);
     }
 
+    public void deplacer() {
+        x += vitesseHorizontal;
+        y += vitesseVertical;
+    }
+
+    public void inverseVitesseVertical() {
+        vitesseVertical *= -1;
+    }
+
+    public void inverseVitesseHorizontal() {
+        vitesseHorizontal *= -1;
+    }
+
     public int getX() {
         return x;
     }
@@ -79,4 +92,6 @@ public class Balle {
     public void setCouleur(Color couleur) {
         this.couleur = couleur;
     }
+
+
 }
