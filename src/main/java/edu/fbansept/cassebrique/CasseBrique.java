@@ -5,6 +5,9 @@ import java.awt.*;
 
 public class CasseBrique extends Canvas {
 
+    protected int largeurEcran = 500;
+    protected int hauteurEcran = 700;
+
     public CasseBrique() throws InterruptedException {
         JFrame fenetre = new JFrame("Casse brique");
         //On récupère le panneau de la fenetre principale
@@ -52,20 +55,7 @@ public class CasseBrique extends Canvas {
 
             //dessin balle
             balle.deplacer();
-
-            dessin.setColor(balle.getCouleur());
-            dessin.fillOval(
-                    balle.getX(),
-                    balle.getY(),
-                    balle.getDiametre(),
-                    balle.getDiametre());
-
-            dessin.setColor(Color.WHITE);
-            dessin.fillOval(
-                    balle.getX() + balle.getDecalageReflet(),
-                    balle.getY() + balle.getDecalageReflet(),
-                    balle.getDiametreReflet(),
-                    balle.getDiametreReflet());
+            balle.dessiner(dessin);
 
             //mouvement balle
             if(balle.getX() < 0 || balle.getX() > 500 - balle.getDiametre()) {

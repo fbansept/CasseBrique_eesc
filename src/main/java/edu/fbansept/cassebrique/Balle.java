@@ -27,6 +27,16 @@ public class Balle {
         y += vitesseVertical;
     }
 
+    public void dessiner(Graphics2D dessin) {
+        dessin.setColor(couleur);
+        dessin.fillOval(x, y,diametre,diametre);
+        dessin.setColor(Color.WHITE);
+        dessin.fillOval(x + decalageReflet,
+                y + decalageReflet,
+                diametreReflet,
+                diametreReflet);
+    }
+
     public void inverseVitesseVertical() {
         vitesseVertical *= -1;
     }
