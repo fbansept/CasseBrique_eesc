@@ -27,6 +27,13 @@ public class Balle {
         this.setDiametre(diametre);
     }
 
+    public Balle(int x, int y) {
+        this.x = x;
+        this.y = y;
+        this.couleur = Color.BLACK;
+        this.setDiametre(5);
+    }
+
     public void deplacer() {
         x += vitesseHorizontal;
         y += vitesseVertical;
@@ -34,18 +41,17 @@ public class Balle {
 
     public void dessiner(Graphics2D dessin) {
 
-        indexFrame ++;
-
-        if(indexFrame % 10 == 0){
-            //TODO ajout nouveau point (dans listePoints)
-        }
-
         dessin.setColor(couleur);
         dessin.fillOval(x, y,diametre,diametre);
         dessin.setColor(Color.WHITE);
         dessin.fillOval(x + decalageReflet, y + decalageReflet,  diametreReflet, diametreReflet);
 
-        //TODO dessiner tous les points de cette balle
+    }
+
+    public void dessinerPoints(Graphics2D dessin) {
+        indexFrame ++;
+
+
     }
 
     public void inverseVitesseVertical() {

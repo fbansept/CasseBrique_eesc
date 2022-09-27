@@ -39,7 +39,7 @@ public class CasseBrique extends Canvas {
         long indexFrame = 0;
         ArrayList<Balle> listeBalles = new ArrayList<>();
 
-        for(int i = 0; i < 100; i ++) {
+        for(int i = 0; i < 1; i ++) {
             listeBalles.add(new Balle(
                     (int)(Math.random() * largeurEcran),
                     (int)(Math.random() * largeurEcran),
