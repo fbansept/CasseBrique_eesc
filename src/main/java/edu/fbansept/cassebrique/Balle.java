@@ -14,7 +14,7 @@ public class Balle {
     protected int decalageReflet;
     protected Color couleur;
 
-    protected ArrayList<Balle> listePoints = new ArrayList<>();
+    protected Balle[] listePoints = new Balle[10];
 
     protected long indexFrame = 0;
 
@@ -48,10 +48,38 @@ public class Balle {
 
     }
 
+
+   //private int indexPoint = 0;
+
     public void dessinerPoints(Graphics2D dessin) {
         indexFrame ++;
 
+        if(indexFrame % 10 == 0) {
 
+//            if(indexFrame > 100) {
+//                listePoints.remove(listePoints.get(0));
+//            }
+
+            int indexPoint = (int)((indexFrame / 10) % 10);
+
+            if(indexFrame <= 100) {
+                listePoints[indexPoint] = new Balle(x, y);
+            } else {
+                listePoints[indexPoint].setX(x);
+                listePoints[indexPoint].setY(y);
+            }
+
+//            indexPoint ++;
+//            if(indexPoint == 10) {
+//                indexPoint = 0;
+//            }
+        }
+
+        for(Balle point : listePoints){
+            if(point != null) {
+                point.dessiner(dessin);
+            }
+        }
     }
 
     public void inverseVitesseVertical() {

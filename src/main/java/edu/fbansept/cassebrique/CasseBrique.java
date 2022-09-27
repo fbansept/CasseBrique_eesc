@@ -14,8 +14,8 @@ public class CasseBrique extends Canvas {
         //On récupère le panneau de la fenetre principale
         JPanel panneau = (JPanel) fenetre.getContentPane();
         //On définie la hauteur / largeur de l'écran
-        panneau.setPreferredSize(new Dimension(500, 500));
-        setBounds(0, 0, 500,500);
+        panneau.setPreferredSize(new Dimension(largeurEcran, hauteurEcran));
+        setBounds(0, 0, largeurEcran,hauteurEcran);
         //On ajoute cette classe (qui hérite de Canvas) comme composant du panneau principal
         panneau.add(this);
 
@@ -42,7 +42,7 @@ public class CasseBrique extends Canvas {
         for(int i = 0; i < 1; i ++) {
             listeBalles.add(new Balle(
                     (int)(Math.random() * largeurEcran),
-                    (int)(Math.random() * largeurEcran),
+                    (int)(Math.random() * hauteurEcran),
                     (int)(Math.random() * 10) - 5,
                     (int)(Math.random() * 10) - 5,
                     (int)(Math.random() * 25) + 5,
@@ -60,13 +60,14 @@ public class CasseBrique extends Canvas {
             //-----------------------------
             //reset dessin
             dessin.setColor(Color.WHITE);
-            dessin.fillRect(0,0,500,500);
+            dessin.fillRect(0,0,largeurEcran,hauteurEcran);
 
             //dessin balle
             for(Balle balle : listeBalles) {
                 balle.deplacer();
                 balle.dessiner(dessin);
                 balle.testCollision(largeurEcran, hauteurEcran);
+                balle.dessinerPoints(dessin);
             }
 
             //-----------------------------
